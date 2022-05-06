@@ -1,0 +1,67 @@
+<div id="exhibitionContainer">
+  <div id="exhbitionDetails">
+    <div class="detailsHeader">
+      <h3 class="detailsTitle">Exhibition details</h3>
+      <hr>
+    </div>
+    <div id="exhbitionForm">
+      <div class="exhibitionCover">
+        <div class="cover">
+          <div *ngIf="exhibitionVM?.cover == null; then nocover else cover"></div>
+          <ng-template #cover>
+            <img [src]="exhibitionVM.cover">
+          </ng-template>
+          <ng-template #nocover>
+            <img [src]="imagePlaceholder">
+          </ng-template>
+        </div>
+      </div>
+      <h4 class="card-title" style="margin: 0">{{ exhibitionVM?.title }}</h4>
+      <p class="description-text">{{dateString}}</p>
+      <p class="description-text" style="color: #783937;">{{exhibitionVM?.description}}</p>
+
+      <div id="detailsTopics">
+        <label *ngFor="let topic of exhibitionVM?.topics" class="check-box" [ngClass]='{"checked":topic.isAssigned}'>
+          <span>{{topic.name}}</span>
+        </label>
+      </div>
+      <div id="detailsFooter" *ngIf="exhibitionVM != null">
+        <button routerLink='/EditExhibition/{{exhibitionVM?.id}}' class="btn btn-edit" [disabled]="disableButton()">Edit</button>
+        <button class="btn btn-danger" (click)="deleteExhbition(exhibitionVM)" [disabled]="disableButton()">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div id="exhibitionTable">
+    <h4 id="exhibitionHeader">My exhibitions</h4>
+    <table class="table table-striped">
+      <thead class="thead">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Date</th>
+          <th scope="col">Expired</th>
+          <th scope="col">Sold items</th>
+          <th scope="col">Profit</th>
+          <th scope="col">Subscribers</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exhibition of exhibitions">
+          <td>{{exhibition.title}}</td>
+          <td>{{getDateTimeString(exhibition.date)}}</td>
+          <td>
+            <div *ngIf="exhibition.expired; then expired else active"></div>
+            <ng-template #active>No</ng-template>
+            <ng-template #expired>Yes</ng-template>
+          </td>
+          <td>{{exhibition.soldItems}}</td>
+          <td>{{exhibition.profit}}</td>
+          <td>{{exhibition.subscribers}}</td>
+          <td>
+            <button class="btn btn-details" (click)="setExhibition(exhibition)">Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+#main {
+  height: calc(100% - 65px);
+  display: flex;
+  flex-direction: row;
+  /* overflow: scroll; */
+}
+#exhibitionFeed {
+  display: flex;
+  flex-direction: column;
+  width: 82%;
+  background-color: #ffffff;
+  overflow-y: scroll;
+  align-items: center;
+}
+
+#searchBar {
+  width: 100%;
+  height: 40px;
+  padding: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #f7f8fb;
+}
+
+#searchBar > input {
+  width: 95%;
+  height: 30px;
+}
+
+.exhibitionCard {
+  display: flex;
+  flex-direction: row;
+  color: #000000;
+  background-color: #ffffff;
+  height: 250px;
+  width: 95%;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #faf0e2;
+}
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.cardHeader > p {
+  color: #783937;
+}
+
+.cardFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.cardFooter > span {
+  color: #783937;
+  margin-right: 10px;
+}
+.card-text {
+  color: #783937;
+}
+.topic {
+  background-color: #783937;
+  color: #fcedda;
+  font-size: 14px;
+  line-height: 20px;
+  margin-right: 7px;
+  text-align: center;
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+
+.sub-btn {
+  background-color: #ee4e34;
+  color: #fcedda;
+  border-color: transparent;
+}
+
+app-filter {
+  position: sticky;
+  top: 0px;
+  height: 100%;
+  width: 18%;
+  background-color: #F7F8FB;
+  overflow: scroll;
+}
+
+.error-message {
+  position: fixed;
+  /* top: 80px; */
+  z-index: 999;
+  padding: 5px;
+  margin-top: 20px;
+  color: #fcedda;
+  width: 50%;
+  border-radius: 10px;
+  text-align: center;
+}

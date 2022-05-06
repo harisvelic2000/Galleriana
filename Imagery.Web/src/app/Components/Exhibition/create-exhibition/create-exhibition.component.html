@@ -1,0 +1,59 @@
+<!-- <div id="container">
+    <div id="exhbitionDetails">
+        <h3 style="text-align: center;">Organize exhibition</h3>
+        <hr>
+        <form id="exhbitionForm" [formGroup]="exhibitionDetails" (ngSubmit)="save()">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter title"
+                   formControlName="title">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea type="text" class="form-control" id="description" placeholder="Description"
+                formControlName="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="startingDate">Starting date:</label>
+                <input type="datetime-local" class="form-control" id="startingDate"  formControlName="startingDate">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a routerLink="/MyExhibitions">My exhibitions</a>
+        </form>
+    </div>
+</div> -->
+<div id="LoginForm">
+    <div class="container">
+        <div class="login-form">
+            <div class="main-div">
+                <div class="panel">
+                    <h3 style="text-align: center;">Organize exhibition</h3>
+                    <hr>
+                </div>
+                <span *ngIf="errorMessage != null" class="error-message">{{errorMessage}}</span>
+                <form id="Login" [formGroup]="exhibitionDetails" (ngSubmit)="save()">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="title" placeholder="Enter title"
+                            formControlName="title" required>
+                        <span class="errorSpan"
+                            *ngIf="exhibitionDetails.get('title')?.invalid && exhibitionDetails.get('title')?.touched">Title
+                            is required!</span>
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" id="description" placeholder="Enter description"
+                            formControlName="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="datetime-local" class="form-control" id="startingDate"
+                            formControlName="startingDate" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary loginButton"
+                        [disabled]="!exhibitionDetails.valid">Create</button>
+                    <div id="formFooter" (click)="myExhibitions()"><span>Check your other </span><a>exhibitions</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

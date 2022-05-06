@@ -1,0 +1,45 @@
+<div id="main">
+  <app-filter (filters)="getByFilters($event)"></app-filter>
+  <div id="exhibitionFeed">
+    <div id="searchBar">
+      <input type="text" [(ngModel)]="filter" value="{{ filter }}" (keyup.enter)="filterByExhibitionName()"
+        placeholder="Search" />
+    </div>
+    <p *ngIf="showExhibitionMessage" class="error-message" [ngStyle]="{'background-color': backgroundColor}">
+      {{exhibitionSubscriptionMessage}}</p>
+    <div class="card mt-2 mb-2 exhibitionCard" *ngFor="let exhibition of exhibitions">
+      <img class="card-img-top w-25" src="{{ exhibition.cover }}" alt="Card image cap" />
+      <div class="card-body">
+        <div class="cardHeader">
+          <div>
+            <h5 class="card-title" style="margin: 0">{{ exhibition.title }}</h5>
+            <a style="margin: 0; color: #d3d3d3" routerLink="/Profile/{{exhibition.organizer.username}}">
+              by {{ exhibition.organizer.firstname }}
+              {{ exhibition.organizer.lastname }}
+            </a>
+          </div>
+          <p>{{ getDateTimeString(exhibition.date) }}</p>
+        </div>
+        <p class="card-text">{{ exhibition.description }}</p>
+        <div>
+          <span *ngFor="let topic of exhibition.topics" class="topic">{{
+            topic.name
+            }}</span>
+        </div>
+        <div class="cardFooter">
+          <span *ngIf="!exhibition.started && !exhibition.expired">{{exhibition?.subscribers}} intrested</span>
+          <button class="btn btn-primary sub-btn" *ngIf="!exhibition.started && !exhibition.expired"
+            (click)="subscription(exhibition.id)">
+            Subscribe
+          </button>
+          <a routerLink="/Exhibition/{{ exhibition.id }}" class="btn btn-primary sub-btn"
+            *ngIf="exhibition.started && !exhibition.expired">Join</a>
+        </div>
+      </div>
+    </div>
+    <mat-paginator [length]="length" [pageSize]="pageSize" aria-label="Select page"
+      (page)="paginator($event)" style="margin-bottom: 20px;">
+    </mat-paginator>
+
+  </div>
+</div>

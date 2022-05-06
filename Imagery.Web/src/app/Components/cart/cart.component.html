@@ -1,0 +1,29 @@
+<div class="cart-header">
+    <h5>Cart items</h5>
+    <button type="button" class="btn btn-clear" (click)="clear()"><mat-icon class="clear-cart-icon">remove_shopping_cart</mat-icon></button>
+</div>
+
+<div class="cart-details" *ngIf="cartItems.length > 0">
+    <p><span class="cart-total">Items:</span>{{itemCount()}}</p>
+    <p><span class="cart-total">Total price:</span>{{totalPrice()}}</p>
+</div>
+
+<div class="card" *ngFor="let item of cartItems">
+    <div class="card-body">
+        <div class="cat-item-info">
+            <h6 class="item-title">{{item.name}}</h6>
+            <p class="item-creator">{{item.creator}}</p>
+        </div>
+        <div class="cart-item-quantity">
+            <p class="item-quantity">{{item.quantity}}</p>
+            <p class="item-price">{{item.quantity * item.price}}$</p>
+            <button type="button" class="btn-clear" (click)="increase(item)"><mat-icon class="inc-item-icon">add</mat-icon></button>
+            <button type="button" class="btn-clear" (click)="decrease(item)"><mat-icon class="dec-item-icon">remove</mat-icon></button>
+            <button type="button" class="btn-clear" (click)="remove(item)"><mat-icon class="clear-cart-icon">delete</mat-icon></button>
+        </div>
+    </div>
+</div>
+
+<div class="cart-footer" *ngIf="cartItems.length > 0">
+    <button type="button" class="btn btn-purchase" (click)="buy()">Purchase</button>
+</div>
